@@ -46,14 +46,14 @@ Minishell is a project that challenges students to create their own shell, simil
 
 ## 🚀 Installation
 
-\`\`\`bash
+```bash
 # Clone the repository
-git clone <your-repo-url>
+git clone https://github.com/MMMBenchahyd/Minishell.git
 cd minishell
 
 # Compile the project
 make
-
+./minishell
 # Clean object files
 make clean
 
@@ -62,7 +62,7 @@ make fclean
 
 # Recompile everything
 make re
-\`\`\`
+```
 
 ### Dependencies
 - **readline library** for command line editing
@@ -71,16 +71,16 @@ make re
 
 ## 💻 Usage
 
-\`\`\`bash
+```bash
 # Start the shell
 ./minishell
 
 # You'll see the prompt
 minishell$ 
-\`\`\`
+```
 
 ### Basic Commands
-\`\`\`bash
+```bash
 # Execute simple commands
 minishell$ ls -la
 minishell$ pwd
@@ -101,7 +101,7 @@ minishell$ echo $MY_VAR
 
 # Exit the shell
 minishell$ exit
-\`\`\`
+```
 
 ## 🔧 Built-in Commands
 
@@ -118,27 +118,27 @@ minishell$ exit
 ### Built-in Command Details
 
 #### echo
-\`\`\`bash
+```bash
 minishell$ echo Hello World
 Hello World
 minishell$ echo -n "No newline"
 No newline minishell$ 
-\`\`\`
+```
 
 #### cd
-\`\`\`bash
+```bash
 minishell$ cd /home/user
 minishell$ cd ..
 minishell$ cd ~
 minishell$ cd -  # Go to previous directory
-\`\`\`
+```
 
 #### export/unset
-\`\`\`bash
+```bash
 minishell$ export PATH="/usr/bin:$PATH"
 minishell$ export MY_VAR="test"
 minishell$ unset MY_VAR
-\`\`\`
+```
 
 ## 🏗️ Implementation Details
 
@@ -166,7 +166,7 @@ minishell$ unset MY_VAR
 
 ### Data Structures
 
-\`\`\`c
+```c
 typedef struct s_token {
     char            *value;
     int             type;
@@ -188,11 +188,11 @@ typedef struct s_shell {
     int             exit_status;
     t_cmd           *commands;
 } t_shell;
-\`\`\`
+```
 
 ## 📁 Project Structure
 
-\`\`\`
+```
 minishell/
 ├── Makefile              # Build configuration
 ├── includes/
@@ -224,7 +224,7 @@ minishell/
 │       ├── memory.c     # Memory management
 │       └── error.c      # Error handling
 └── README.md            # This file
-\`\`\`
+```
 
 ## 🧠 Key Concepts
 
@@ -244,16 +244,16 @@ minishell/
 - **String manipulation**: Safe string operations
 
 ### Signal Handling
-\`\`\`c
+```c
 // Example signal handler setup
 signal(SIGINT, handle_sigint);
 signal(SIGQUIT, SIG_IGN);
-\`\`\`
+```
 
 ## 🧪 Testing
 
 ### Basic Functionality Tests
-\`\`\`bash
+```bash
 # Simple commands
 echo "test"
 ls -la
@@ -266,10 +266,10 @@ echo $TEST
 unset TEST
 env | grep TEST
 exit 0
-\`\`\`
+```
 
 ### Advanced Feature Tests
-\`\`\`bash
+```bash
 # Pipes
 ls | grep .c | wc -l
 cat file.txt | head -5 | tail -2
@@ -293,10 +293,10 @@ echo "Current directory: $(pwd)"
 # Logical operators
 ls && echo "Success" || echo "Failed"
 false || echo "This will print"
-\`\`\`
+```
 
 ### Error Handling Tests
-\`\`\`bash
+```bash
 # Invalid commands
 nonexistent_command
 ls /nonexistent/directory
@@ -307,7 +307,7 @@ cat /etc/shadow
 # Syntax errors
 ls |
 echo "unclosed quote
-\`\`\`
+```
 
 ### Signal Tests
 - Press `Ctrl+C` during command execution
@@ -332,8 +332,9 @@ echo "unclosed quote
 4. **Zombie processes**: Proper process cleanup with `wait()`
 
 # Run with valgrind
+```bash
 valgrind --leak-check=full ./minishell
-\`\`\`
+```
 
 ## 📚 Resources
 
