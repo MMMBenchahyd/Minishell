@@ -167,27 +167,50 @@ minishell$ unset MY_VAR
 ### Data Structures
 
 ```c
-typedef struct s_token {
-    char            *value;
-    int             type;
-    struct s_token  *next;
-} t_token;
+typedef struct s_token
+{
+	char			*value;
+	int				type;
+	int				a_sp;
+	struct s_token	*next;
+}					t_token;
 
-typedef struct s_cmd {
-    char            **args;
-    char            *input_file;
-    char            *output_file;
-    int             append_mode;
-    int             here_doc;
-    struct s_cmd    *next;
-} t_cmd;
+typedef struct s_env
+{
+	char			*key;
+	char			*equal;
+	char			*value;
+	struct s_env	*next;
 
-typedef struct s_shell {
-    char            **env;
-    char            *prompt;
-    int             exit_status;
-    t_cmd           *commands;
-} t_shell;
+}					t_env;
+
+typedef struct s_gc
+{
+	void			*ptr;
+	struct s_gc		*next;
+
+}					t_gc;
+
+typedef struct s_redirect
+{
+	t_token			file;
+	int				type;
+}					t_redirect;
+
+typedef struct s_cmd
+{
+	t_token			**tokens;
+	t_redirect		**files;
+	int				hdoc_indx;
+	int				last;
+}					t_cmd;
+
+typedef struct s_builtin
+{
+	char			*name;
+	int				(*func)(t_cmd);
+}					t_builtin;
+
 ```
 
 ## 📁 Project Structure
